@@ -2,6 +2,11 @@ _FAILED_MESSAGES = {
     "hazardous": "Hazardous items detected. Can't proceed further.",
 }
 
+def isHazardous(hazardous_item):
+    if hazardous_item:
+        return True
+    return False
+
 def validate_baggage(baggage_weight, baggage_type, passenger_class, flight_type, hazardous_item):
     """
     Business Rules:
@@ -11,5 +16,5 @@ def validate_baggage(baggage_weight, baggage_type, passenger_class, flight_type,
     - Hazardous items are prohibited
     """
 
-    if hazardous_item:
+    if isHazardous(hazardous_item):
         return _FAILED_MESSAGES["hazardous"]
