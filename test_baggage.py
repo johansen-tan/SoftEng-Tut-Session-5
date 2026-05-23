@@ -1,11 +1,16 @@
 import pytest
-from src.baggage import validate_baggage
+from src.baggage import validate_baggage 
 
 _SUCCESS_MESSAGES = {"domestic": "Checked in successful.", 
                         "international": "Checked in successful. Passport is required"}
 
+_FAILED_MESSAGES = {
+    "hazardous": "Hazardous items detected. Can't proceed further.",
+}
 
-
+def test_hazardous_item_prohibited():
+    assert validate_baggage(5, "carry-on", "economy", "domestic", hazardous_item=True) == _FAILED_MESSAGES["hazardous"]
+    
 def test_flight_type():
     assert validate_baggage(5, "carry-on", "economy", "domestic", hazardous_item=False) == _SUCCESS_MESSAGES["domestic"]
     assert validate_baggage(25, "checked", "economy", "domestic", hazardous_item=False) == _SUCCESS_MESSAGES["domestic"]
