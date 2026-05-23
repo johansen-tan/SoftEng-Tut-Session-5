@@ -29,6 +29,12 @@ def isOverweight(weight, max_weight):
         return True
     else:
         return False
+    
+def isChecked(type):
+    if (type == "checked"):
+        return True
+    else:
+        return False
 
 def isInvalid(weight):
     if weight < 0:
@@ -47,6 +53,11 @@ def validate_baggage(baggage_weight, baggage_type, passenger_class, flight_type,
     max_weight = 0
     if isCarryOn(baggage_type):
         max_weight = 7
+    elif isChecked(baggage_type):
+        max_weight = 30
+        
+    if passenger_class == "business":
+        max_weight += 10
 
     if isOverweight(baggage_weight, max_weight):
         return _FAILED_MESSAGES["overweight"]
