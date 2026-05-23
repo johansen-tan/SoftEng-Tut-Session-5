@@ -24,3 +24,12 @@ def test_flight_type():
     # assert validate_baggage(25, "checked", "economy", "domestic", hazardous_item=False) == _SUCCESS_MESSAGES["domestic"]
     assert validate_baggage(7, "carry-on", "economy", "international", hazardous_item=False) == _SUCCESS_MESSAGES["international"]
     # assert validate_baggage(30, "checked", "economy", "international", hazardous_item=False) == _SUCCESS_MESSAGES["international"]
+
+def test_checked_business_allowance():
+    assert validate_baggage(-1, "carry-on", "business", "domestic", hazardous_item=False) == True
+    assert validate_baggage(-1, "carry-on", "business", "domestic", hazardous_item=False) == False
+    assert validate_baggage(17, "carry-on", "business", "domestic", hazardous_item=False) == True
+    assert validate_baggage(18, "carry-on", "business", "domestic", hazardous_item=False) == False
+    assert validate_baggage(40, "checked", "business", "domestic", hazardous_item=False) == True
+    assert validate_baggage(41, "checked", "business", "domestic", hazardous_item=False) == False
+    
