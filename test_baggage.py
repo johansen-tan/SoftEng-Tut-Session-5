@@ -32,3 +32,8 @@ def test_checked():
     assert validate_baggage(30, "checked", "economy", "domestic", hazardous_item=False) == _SUCCESS_MESSAGES["domestic"]
     assert validate_baggage(31, "checked", "economy", "domestic", hazardous_item=False) == _FAILED_MESSAGES["overweight"]
     assert validate_baggage(31, "checked", "economy", "domestic", hazardous_item=False) == _FAILED_MESSAGES["overweight"]
+
+def test_checked_business():
+    assert validate_baggage(-1, "checked", "business", "domestic", hazardous_item=False) == _FAILED_MESSAGES["invalid"]
+    assert validate_baggage(40, "checked", "business", "domestic", hazardous_item=False) == _SUCCESS_MESSAGES["domestic"]
+    assert validate_baggage(41, "checked", "business", "domestic", hazardous_item=False) == _FAILED_MESSAGES["overweight"]
