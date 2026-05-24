@@ -35,6 +35,12 @@ def isChecked(type):
         return True
     else:
         return False
+    
+def isBusiness(passenger_class):
+    if (passenger_class == "business"):
+        return True
+    else:
+        return False
 
 def isInvalid(weight):
     if weight < 0:
@@ -55,7 +61,7 @@ def validate_baggage(baggage_weight, baggage_type, passenger_class, flight_type,
         max_weight = 7
     elif isChecked(baggage_type):
         max_weight = 30
-        if passenger_class == "business":
+        if isBusiness(passenger_class):
             max_weight += 10
 
 
